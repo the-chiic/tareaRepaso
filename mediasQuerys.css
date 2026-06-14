@@ -1,5 +1,5 @@
 /* TABLET */
-@media screen and (max-width: 1024px) {
+@media (max-width: 1024px) {
     /* 
       1. Ajustamos el ancho del body de un valor fijo de 1480px a 100% 
          para adaptarlo al ancho del viewport y evitar desbordamientos laterales.
@@ -124,7 +124,7 @@
 }
 
 /* MOBILE */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
     /* 
       1. Adaptamos el menú lateral para que se apile de forma superior vertical:
          - Desactivamos el flotado (float: none).
