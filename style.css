@@ -1,0 +1,291 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 1480px;                             /* Ancho total de la maqueta según boceto. Todos los elementos internos se calculan a partir de este valor. */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+nav {
+    width: 300px;                      /* Ancho fijo de la barra lateral según boceto. Representa el 20.27% del ancho total del body (300px / 1480px). */
+    text-align: center;                
+    background-color: rgb(2, 50, 14);  
+    height: 700px;                     /* Altura total de la sección superior de la página (excluyendo el footer de 100px). */
+    float: left;                       /* Flota el menú a la izquierda permitiendo que el contenedor 'main' se coloque contiguo a su derecha. */
+    display: flex;                     /* Convierte al nav en contenedor flex para distribuir verticalmente el logo y el menú. */
+    flex-direction: column;            /* Establece que los hijos directos del nav se organicen en una columna vertical. */
+
+    .container-icon {
+        padding: 40px 0px;             /* Relleno vertical: 40px superior y 40px inferior. Sumado al logo (64px) y padding h3 (40px) y texto h3 (approx 56px) conforma los 200px del bloque. */
+
+        .container-logo {
+            width: 64px;               
+            margin: 0 auto;            
+
+            img {
+                width: 100%;           
+            }
+        }
+
+        .container-title-logo {
+            margin: 0 auto;
+
+            h3 {
+                font-size: 1.5rem;
+                color: white;          
+                padding: 20px 0px;     /* Padding vertical: añade 20px arriba y abajo del texto para separarlo del logo y la línea hr. */
+            }
+        }
+    }
+
+    ul {
+        /*
+          PROPIEDADES DE FLEXBOX EXPLICADAS:
+          - flex-grow: 1; -> Permite que el menú crezca para ocupar todo el espacio vertical disponible (500px restantes: 700px total - 200px cabecera).
+          - flex-shrink: 1; -> Permite que se encoja si el espacio vertical se reduce por debajo de los 200px iniciales.
+          - flex-basis: 200px; -> Establece la altura base inicial recomendada de la lista en 200px antes de crecer.
+        */
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 200px;
+        display: flex;                 /* Activa flexbox en la lista para posicionar los botones del menú. */
+        flex-direction: column;        /* Ordena los botones del menú de forma vertical. */
+        justify-content: space-evenly; /* Distribuye uniformemente los 7 botones dejando la misma separación entre ellos y los bordes del ul. */
+        padding: 50px;                 /* Relleno de 50px en todos los lados. Deja un ancho útil para los botones de exactamente 200px (300px ancho - 100px padding horizontal). */
+
+        .container-list {
+            text-align: left;          
+            list-style: none;          
+
+            a {
+                display: block;                  /* Hace que el enlace se comporte como bloque para ocupar todo el ancho útil de 200px de la lista. */
+                color: white;                  
+                text-decoration: none;          
+                padding: 10px 10px 10px 20px;    /* Relleno interno del botón para el texto: 10px sup/inf, 10px der, y 20px izq para identarlo. */
+                background-color: rgb(12, 145, 0);
+                border-radius: 20px; 
+            }            
+        
+        }
+    }
+}
+
+main {
+    width: 1080px;                 /* Ancho útil del contenido. Ancho total (1180px) - Padding horizontal (50px izq + 50px der = 100px) = 1080px. */
+    height: 650px;                 /* Altura de contenido útil. Altura total (700px) - Padding inferior (50px) = 650px de espacio útil. */
+    padding: 0px 50px 50px 50px;   /* Padding: 0px arriba, 50px a la izquierda/derecha, y 50px abajo. Esto enmarca el contenido con los márgenes del boceto. */
+    margin-left: 300px;            /* Margen izquierdo igual al ancho del nav (300px) para evitar superposición con el sidebar flotado. */
+    background-color: antiquewhite;
+
+    .container-header {
+        display: flex;                 /* Activa flexbox para colocar el título y la etiqueta de admin en una línea horizontal. */
+        justify-content: space-between;/* Separa los dos elementos empujando "Dashboard" a la izquierda y "Admin" a la derecha. */
+        height: 50px;                  /* Altura exacta asignada a la cabecera en el boceto. */
+    }
+
+    .container-stadistics {
+        display: flex;                 /* Alinea las 4 tarjetas de estadísticas horizontalmente en fila. */
+        justify-content: space-between;/* Distribuye las tarjetas en los 1080px útiles. 4 tarjetas de 250px totalizan 1000px, los 80px restantes se reparten en 3 gaps de 26.6px cada uno. */
+        align-items: center;           /* Alinea verticalmente las tarjetas en el centro de la sección. */
+        width: 1080px;                 /* Ancho exacto igual al área de contenido disponible en el main. */
+        height: 150px;                 /* Altura de la sección de estadísticas según las cotas del boceto. */
+       
+        .stadistic{
+            /*
+              CÁLCULO DEL MODELO DE CAJA ESTÁNDAR (content-box):
+              - width: 200px; -> Ancho de contenido asignado.
+              - padding: 0px 25px; -> Añade 25px a la izquierda y 25px a la derecha.
+              - Ancho total externo de la tarjeta = 200px + 25px + 25px = 250px. Esto coincide al milímetro con el boceto.
+            */
+            width: 200px;
+            height: 100px;              /* Altura exacta de la tarjeta según boceto. */
+            background-color: aliceblue;
+            border-radius: 20px;        
+            display: flex;              /* Activa flexbox para alinear el icono y el texto de forma horizontal. */
+            align-items: center;        /* Centra verticalmente los elementos internos de la tarjeta. */
+            padding: 0px 25px;          /* Añade 25px a los lados para separar el contenido de los bordes externos. */
+
+            .container-text-stadistic{
+                display: flex;          /* Activa flexbox para ordenar el título y valor de la estadística. */
+                flex-direction: column; /* Apila el nombre de la estadística y el valor en columna. */
+            }
+            
+            div {
+                width: 64px;            
+
+                img {
+                    width: 100%;        
+                    border-radius: 50px; 
+                }
+            }
+        }
+    }
+
+    .container-last-updates{
+        width: 1080px;                 /* Ancho igual al contenido útil disponible en el main. */
+        height: 400px;                 /* Altura de la fila asignada en el boceto. */
+        
+        padding: 50px 0px;     
+        display: flex;                 /* Activa flexbox para alinear los dos bloques inferiores lado a lado. */
+        justify-content: space-between;/* Separa al máximo ambas cajas. Caja izq (700px total) + Caja der (300px total) = 1000px. Deja un espacio libre intermedio de exactamente 80px. */
+
+        .card-info-pedidos{
+            /*
+              CÁLCULO DEL MODELO DE CAJA ESTÁNDAR (content-box):
+              - width: 600px; -> Ancho de contenido.
+              - padding: 50px; -> 50px a la izquierda y 50px a la derecha.
+              - Ancho externo total = 600px + 50px + 50px = 700px. Coincide al 100% con los 700px del boceto.
+              - height: 300px; -> Altura de contenido.
+              - padding superior e inferior de 50px.
+              - Altura externa total = 300px + 50px + 50px = 400px. Coincide con los 400px del boceto.
+            */
+            width: 600px;
+            height: 300px;
+            padding: 50px;
+            background-color: aliceblue;
+            border-radius: 20px;        
+            overflow-y: auto;           
+            text-align: justify;        
+        }
+
+        .card-productos-populares{
+            /*
+              CÁLCULO DEL MODELO DE CAJA ESTÁNDAR (content-box):
+              - width: 200px; -> Ancho de contenido.
+              - padding: 50px; -> 50px a la izquierda y 50px a la derecha.
+              - Ancho externo total = 200px + 50px + 50px = 300px. Coincide al 100% con los 300px del boceto.
+              - height: 300px; -> Altura de contenido.
+              - padding: 50px arriba y abajo.
+              - Altura externa total = 300px + 50px + 50px = 400px. Coincide con los 400px del boceto.
+            */
+            width: 200px;
+            height: 300px;
+            padding: 50px;
+            display: flex;              /* Activa flexbox para apilar los elementos de producto de forma vertical. */
+            flex-direction: column;     /* Coloca los productos en formato columna vertical. */
+            justify-content: space-between;/* Distribuye los productos dejando una separación vertical proporcional entre ellos. */
+            background-color: aliceblue;
+            border-radius: 20px;        
+            overflow-y: auto;           
+
+            .producto-item{
+                display: flex;          /* Activa flexbox para alinear el contenedor del icono y el texto de forma horizontal. */
+                justify-content: space-around;/* Distribuye el icono y el texto uniformemente dentro de la caja de productos de 200px de ancho útil. */
+
+                .producto-imagen-contenedor{
+                    flex: 0 0 50px;     /* No crece, no se encoge, y establece un ancho base estricto de 50px para la foto del producto. */
+
+                    img {
+                        width: 100%;    /* La imagen ocupa la totalidad de los 50px del contenedor. */
+                        border-radius: 50px;/* Redondea las imágenes a un formato circular como muestra el boceto. */
+                    }
+                }
+
+                .producto-texto{
+                    flex: 0 0 150px;    /* No crece, no se encoge, y establece un ancho base estricto de 150px para el texto descriptivo. */
+                    text-align: justify;/* Justifica el texto para mantener alineación. */
+                }
+            }
+        }
+    }
+}
+
+footer {
+    clear: both;                       /* Interrumpe la flotación del menú lateral 'nav' para forzar al footer a colocarse debajo de toda la estructura superior. */
+    color: aliceblue;                  
+
+    /*
+      CÁLCULO DEL MODELO DE CAJA ESTÁNDAR (content-box):
+      - width: 1380px; -> Ancho de contenido.
+      - padding: 50px a la izquierda y 50px a la derecha (100px total).
+      - Ancho externo total = 1380px + 100px = 1480px. Coincide exactamente con el body.
+      - height: 75px; -> Altura de contenido.
+      - padding-top: 25px.
+      - Altura externa total = 75px + 25px = 100px. Coincide exactamente con las cotas del boceto.
+    */
+    width: 1380px;
+    height: 75px;
+    padding: 25px 50px 0px 50px;
+    background-color: rgb(67, 97, 70); 
+    display: flex;                     /* Activa flexbox para distribuir las 3 secciones del footer de forma horizontal. */
+    justify-content: space-between;    /* Alinea las 3 secciones con espacio máximo entre ellas. */
+
+    .container-footer-title-logo {
+        /*
+          EXPLICACIÓN DE PROPIEDADES FLEXBOX:
+          - flex-grow: 1; -> Permite que esta columna se expanda si hay espacio adicional disponible.
+          - flex-shrink: 1; -> Permite que se reduzca si la pantalla disminuye.
+          - flex-basis: 460px; -> Ancho base del bloque. 1380px útiles / 3 secciones = 460px exactos por sección.
+        */
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 460px;
+
+        h3 {
+            font-size: 1rem;            
+        }
+
+        p {
+            font-size: 0.8rem;          
+        }
+    }
+
+    .container-footer-info {
+        /*
+          EXPLICACIÓN DE PROPIEDADES FLEXBOX:
+          - flex-grow: 1; -> Permite expandirse proporcionalmente.
+          - flex-shrink: 1; -> Permite encogerse proporcionalmente.
+          - flex-basis: 460px; -> Ocupa exactamente un tercio del ancho disponible del footer (460px).
+        */
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 460px;
+
+        h3 {
+            font-size: 1rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+        }
+    }
+
+    .container-footer-social-media {
+        /*
+          EXPLICACIÓN DE PROPIEDADES FLEXBOX:
+          - flex-grow: 1; -> Crece proporcionalmente.
+          - flex-shrink: 1; -> Se encoje proporcionalmente.
+          - flex-basis: 460px; -> Ancho base de un tercio de columna (460px).
+        */
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 460px;
+
+        .social-links {
+            display: flex;             /* Activa flexbox para alinear los 3 iconos en una línea. */
+            justify-content: space-evenly;/* Distribuye los 3 iconos equitativamente dentro del contenedor de 460px. */
+
+            .social-logo {
+                /*
+                  CORRECCIÓN JUSTIFICADA DEL PROFESOR:
+                  - Ancho: cambiado de "64px" a "153.3px".
+                  - Razón: Según la cota del boceto, cada espacio útil asignado a un icono de red social es de exactamente 153.3px.
+                    De esta forma, 3 bloques de 153.3px suman 459.9px (redondeado a los 460px que mide esta tercera columna).
+                  - Solución: Definir el ancho del contenedor en 153.3px y centrar la imagen del icono de 64px dentro de él.
+                */
+                width: 153.3px;        /* Ancho exacto indicado en las cotas del boceto. */
+                display: flex;         /* Activa flexbox para alinear el icono al centro. */
+                justify-content: center;/* Centra horizontalmente el icono de la red social en su bloque de 153.3px. */
+
+                img {
+                    width: 64px;       
+                    border-radius: 50px;
+                }
+            }
+        }
+    }
+}
+
