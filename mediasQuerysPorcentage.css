@@ -1,5 +1,6 @@
 /* TABLET */
 @media (max-width: 1024px) {
+
     /* 
       1. Ajustamos el ancho del body a 100% para adaptarse al viewport 
          y evitar desbordamientos laterales.
@@ -37,20 +38,21 @@
     /* 
       4. Ajustamos el main para compensar la reducción del nav:
          - margin-left: 23.44% (igual al ancho del nav en tablet).
-         - width: calc(100% - 23.44% - 4.88%) = aprox. 71.68%
+         - width: 100% - 23.44% - 4.88% = aprox. 71.68%
            Desglose: 23.44% nav + 2.44% padding izq + 2.44% padding der = 28.32% restado.
            Cálculo padding horizontal: (25px / 1024px) * 100 = 2.44%
          - padding horizontal reducido: 2.44% (25px de 1024px).
          - padding bottom: 2.44%.
     */
     main {
-        width: calc(100% - 23.44% - 4.88%);
+        width: 71.68%;
         /* 100% - 23.44% (nav) - 2.44% padding izq - 2.44% padding der */
         margin-left: 23.44%;
         /* (240px / 1024px) * 100 = 23.44% */
         padding: 0% 2.44% 2.44% 2.44%;
         /* (25px / 1024px) * 100 = 2.44% */
-        height: auto; /* Altura auto para adaptarse al contenido en tablet */
+        height: auto;
+        /* Altura auto para adaptarse al contenido en tablet */
     }
 
     /* 
@@ -77,8 +79,8 @@
            es más seguro usar % del ancho. Aquí usamos 1.46% del viewport de 1024px.
     */
     main .container-stadistics .stadistic {
-        width: calc(50% - 5.21%);
-        /* 50% de 2 columnas menos padding lateral: (25px / 480px ancho col) * 100 = 5.21% */
+        width: 44.79%;
+        /* 50% de 2 columnas menos padding lateral 5.21%: (25px / 480px) * 100 = 5.21% → 50% - 5.21% = 44.79% */
         margin-bottom: 1.46%;
         /* (15px / 1024px) * 100 = 1.46% */
     }
@@ -108,8 +110,8 @@
          - margin-bottom: (10px / 1024px) * 100 = 0.98%
     */
     main .container-last-updates .card-info-pedidos {
-        width: calc(100% - 9.26%);
-        /* 100% menos 4.63% padding izq + 4.63% padding der */
+        width: 90.74%;
+        /* 100% menos padding interno total 9.26%: 4.63% izq + 4.63% der = 9.26% → 100% - 9.26% = 90.74% */
         height: auto;
         margin-bottom: 0.98%;
         /* (10px / 1024px) * 100 = 0.98% */
@@ -121,8 +123,8 @@
          - height: auto.
     */
     main .container-last-updates .card-productos-populares {
-        width: calc(100% - 9.26%);
-        /* 100% menos 4.63% padding izq + 4.63% padding der */
+        width: 90.74%;
+        /* 100% menos padding interno total 9.26%: 4.63% izq + 4.63% der = 9.26% → 100% - 9.26% = 90.74% */
         height: auto;
     }
 
@@ -136,8 +138,8 @@
           - gap: (20px / 1024px) * 100 = 1.95%
     */
     footer {
-        width: calc(100% - 9.76%);
-        /* 100% - (50px izq + 50px der) / 1024px * 100 = 9.76% */
+        width: 90.24%;
+        /* 100% menos padding horizontal total 9.76%: (50px / 1024px) * 100 = 4.88% * 2 lados = 9.76% → 100% - 9.76% = 90.24% */
         height: auto;
         padding: 2.44% 4.88%;
         /* vertical: (25px / 1024px) * 100 = 2.44% | horizontal: (50px / 1024px) * 100 = 4.88% */
@@ -154,8 +156,8 @@
     footer .container-footer-title-logo,
     footer .container-footer-info,
     footer .container-footer-social-media {
-        flex-basis: calc(33.33% - 1.30%);
-        /* 33.33% de 3 columnas menos fracción del gap de 1.95% */
+        flex-basis: 32.03%;
+        /* 33.33% de 3 columnas menos fracción del gap 1.30%: 1.95% / 2 ≈ 1.30% → 33.33% - 1.30% = 32.03% */
     }
 
     /* 
@@ -163,13 +165,14 @@
           - width de cada icono: calc(33.33% - 0.98%) para 3 iconos dentro del bloque.
     */
     footer .container-footer-social-media .social-links .social-logo {
-        width: calc(33.33% - 0.98%);
-        /* 33.33% del bloque de redes sociales menos fracción del gap */
+        width: 32.35%;
+        /* 33.33% de 3 iconos menos fracción del gap 0.98%: 1.95% / 2 ≈ 0.98% → 33.33% - 0.98% = 32.35% */
     }
 }
 
 /* MÓVIL */
 @media (max-width: 768px) {
+
     /* 
       1. El nav pasa a ser una barra superior a ancho completo:
          - width: 100% del viewport.
@@ -221,8 +224,8 @@
          - height: auto.
     */
     main {
-        width: calc(100% - 5.21%);
-        /* 100% - (20px izq + 20px der) / 768px * 100 = 5.21% */
+        width: 94.79%;
+        /* 100% menos padding horizontal total 5.21%: (20px / 768px) * 100 = 2.60% * 2 lados = 5.21% → 100% - 5.21% = 94.79% */
         margin-left: 0%;
         padding: 2.60%;
         /* (20px / 768px) * 100 = 2.60% */
@@ -246,7 +249,8 @@
         /* (15px / 768px) * 100 = 1.95% */
 
         h1 {
-            font-size: 1.4rem; /* Se mantiene en rem para respetar la escala tipográfica del sistema */
+            font-size: 1.4rem;
+            /* Se mantiene en rem para respetar la escala tipográfica del sistema */
         }
     }
 
@@ -271,8 +275,8 @@
            Cálculo: el padding original de la tarjeta es 2.31% a cada lado = 4.63% total.
     */
     main .container-stadistics .stadistic {
-        width: calc(100% - 4.63%);
-        /* 100% menos 2.31% padding izq + 2.31% padding der */
+        width: 95.37%;
+        /* 100% menos padding horizontal total 4.63%: 2.31% izq + 2.31% der = 4.63% → 100% - 4.63% = 95.37% */
         margin-bottom: 0%;
     }
 
@@ -290,8 +294,8 @@
         /* (20px / 768px) * 100 = 2.60% */
 
         .card-info-pedidos {
-            width: calc(100% - 5.21%);
-            /* 100% menos (20px izq + 20px der) / 768px * 100 = 5.21% */
+            width: 94.79%;
+            /* 100% menos padding horizontal total 5.21%: (20px / 768px) * 100 = 2.60% * 2 = 5.21% → 100% - 5.21% = 94.79% */
             padding: 2.60%;
             /* (20px / 768px) * 100 = 2.60% */
             height: auto;
@@ -299,8 +303,8 @@
         }
 
         .card-productos-populares {
-            width: calc(100% - 5.21%);
-            /* 100% menos (20px izq + 20px der) / 768px * 100 = 5.21% */
+            width: 94.79%;
+            /* 100% menos padding horizontal total 5.21%: (20px / 768px) * 100 = 2.60% * 2 = 5.21% → 100% - 5.21% = 94.79% */
             padding: 2.60%;
             /* (20px / 768px) * 100 = 2.60% */
             height: auto;
@@ -310,7 +314,8 @@
                 /* (15px / 768px) * 100 = 1.95% */
 
                 .producto-texto {
-                    flex: 1; /* El texto ocupa todo el espacio restante del contenedor */
+                    flex: 1;
+                    /* El texto ocupa todo el espacio restante del contenedor */
                 }
             }
         }
@@ -325,8 +330,8 @@
          - gap: (20px / 768px) * 100 = 2.60%
     */
     footer {
-        width: calc(100% - 5.21%);
-        /* 100% - (20px izq + 20px der) / 768px * 100 = 5.21% */
+        width: 94.79%;
+        /* 100% menos padding horizontal total 5.21%: (20px / 768px) * 100 = 2.60% * 2 = 5.21% → 100% - 5.21% = 94.79% */
         height: auto;
         padding: 3.91% 2.60%;
         /* vertical: (30px / 768px) * 100 = 3.91% | horizontal: (20px / 768px) * 100 = 2.60% */
