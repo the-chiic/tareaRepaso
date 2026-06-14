@@ -1,302 +1,368 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    width: 100%;                               /* Convertido a fluido para adaptarse al viewport. Original: 1480px. */
-    max-width: 1480px;                         /* Conserva el tamaño original máximo de 1480px para evitar expansiones desmedidas en pantallas muy grandes. */
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-}
-
-nav {
-    width: 20.27%;                             /* Original: 300px. Referencia: body de 1480px. Operación: (300px / 1480px) * 100 = 20.27% */
-    text-align: center;                
-    background-color: rgb(2, 50, 14);  
-    height: 700px;                             /* Se mantiene en px para asegurar la estabilidad vertical del layout y evitar colapsos visuales. */
-    float: left;                       
-    display: flex;                     
-    flex-direction: column;            
-
-    .container-icon {
-        /*
-          CÁLCULO DEL PADDING VERTICAL EN PORCENTAJE:
-          - padding vertical: 13.33%. Original: 40px. Referencia: nav de 300px. Operación: (40px / 300px) * 100 = 13.33%
-        */
-        padding: 13.33% 0%;                     
-
-        .container-logo {
-            width: 21.33%;                     /* Original: 64px. Referencia: nav de 300px. Operación: (64px / 300px) * 100 = 21.33% */
-            margin: 0 auto;            
-
-            img {
-                width: 100%;           
-            }
-        }
-
-        .container-title-logo {
-            margin: 0 auto;
-
-            h3 {
-                font-size: 1.5rem;
-                color: white;          
-                /*
-                  CÁLCULO DEL PADDING VERTICAL EN PORCENTAJE:
-                  - padding vertical: 6.67%. Original: 20px. Referencia: nav de 300px. Operación: (20px / 300px) * 100 = 6.67%
-                */
-                padding: 6.67% 0%;             
-            }
-        }
-    }
-
-    ul {
-        /*
-          PROPIEDADES DE FLEXBOX EXPLICADAS:
-          - flex-grow: 1; -> Permite al contenedor crecer para ocupar todo el espacio vertical del sidebar.
-          - flex-shrink: 1; -> Permite encogerse proporcionalmente.
-          - flex-basis: 28.57%; -> Altura base inicial de 200px respecto a la altura vertical de nav (700px). Operación: (200px / 700px) * 100 = 28.57%
-        */
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: 28.57%;
-        display: flex;                 
-        flex-direction: column;        
-        justify-content: space-evenly; 
-        /*
-          CÁLCULO DEL PADDING EN PORCENTAJE:
-          - padding: 16.67%. Original: 50px en todos los lados. Referencia: nav de 300px. Operación: (50px / 300px) * 100 = 16.67%
-        */
-        padding: 16.67%;                  
-
-        .container-list {
-            text-align: left;          
-            list-style: none;          
-
-            a {
-                display: block;                  
-                color: white;                  
-                text-decoration: none;          
-                /*
-                  CÁLCULO DE LOS PADDINGS DEL BOTÓN EN PORCENTAJE:
-                  - Relleno vertical y lateral derecho (10px): (10px / 200px) * 100 = 5.00% respecto a la caja del enlace de 200px útiles.
-                  - Relleno lateral izquierdo (20px): (20px / 200px) * 100 = 10.00% respecto a la caja del enlace de 200px útiles.
-                */
-                padding: 5% 5% 5% 10%; 
-                background-color: rgb(12, 145, 0);
-                border-radius: 20px;            /* Se mantiene en px ya que los bordes redondeados no deben deformarse con el tamaño de la pantalla. */
-            }            
-        }
-    }
-}
-
-main {
-    width: 72.97%;                             /* Original: 1080px (ancho útil). Referencia: body de 1480px. Operación: (1080px / 1480px) * 100 = 72.97% */
-    height: 650px;                             /* Se mantiene en px para mantener la proporción de altura exacta del nav y evitar desajustes verticales. */
-    /*
-      CÁLCULO DE PADDING DEL MAIN EN PORCENTAJE:
-      - padding horizontal y bottom: 3.38%. Original: 50px. Referencia: body de 1480px. Operación: (50px / 1480px) * 100 = 3.38%
+/* TABLET */
+@media (max-width: 1024px) {
+    /* 
+      1. Ajustamos el ancho del body a 100% para adaptarse al viewport 
+         y evitar desbordamientos laterales.
+         El gradiente de fondo se ajusta: el nav ocupa el 23.44% del ancho en tablet.
+         Cálculo: (240px / 1024px) * 100 = 23.44%
     */
-    padding: 0px 3.38% 3.38% 3.38%;             
-    margin-left: 20.27%;                       /* Original: 300px (ancho del nav). Referencia: body de 1480px. Operación: (300px / 1480px) * 100 = 20.27% */
-    background-color: antiquewhite;
-
-    .container-header {
-        display: flex;                 
-        justify-content: space-between;
-        height: 50px;                          /* Se mantiene en px por ser una sección superior horizontal de altura de texto fija. */
+    body {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        background: linear-gradient(to right, rgb(2, 50, 14) 23.44%, antiquewhite 23.44%);
     }
 
-    .container-stadistics {
-        display: flex;                 
-        justify-content: space-between;
-        align-items: center;           
-        width: 100%;                           /* Ocupa el 100% de la zona de contenido del main (1080px / 1080px). */
-        height: 150px;                         /* Se mantiene en px según las cotas verticales fijas del diseño. */
-       
-        .stadistic{
-            /*
-              CÁLCULO DEL MODELO DE CAJA ESTÁNDAR (content-box):
-              - width: 18.52%; -> Original: 200px (ancho útil). Referencia: main de 1080px. Operación: (200px / 1080px) * 100 = 18.52%
-              - padding horizontal: 2.31%; -> Original: 25px. Referencia: main de 1080px. Operación: (25px / 1080px) * 100 = 2.31%
-              - Ancho total de la tarjeta = 18.52% + 2.31% (izq) + 2.31% (der) = 23.14% de main.
-                Verificación: 23.14% de 1080px = 250px de ancho total, coincidiendo con el boceto.
-            */
-            width: 18.52%;
-            height: 100px;                     /* Se mantiene en px de acuerdo con la cota de altura de tarjeta. */
-            background-color: aliceblue;
-            border-radius: 20px;               /* Se mantiene en px por ser una propiedad estética fija. */
-            display: flex;              
-            align-items: center;        
-            padding: 0px 2.31%;                
-
-            .container-text-stadistic{
-                display: flex;          
-                flex-direction: column; 
-                flex-grow: 2;
-            }
-            
-            div {
-                width: 32%;                    /* Original: 64px. Referencia: ancho útil de tarjeta .stadistic de 200px. Operación: (64px / 200px) * 100 = 32% */
-
-                img {
-                    width: 100%;        
-                    border-radius: 50px; 
-                }
-            }
-        }
+    /* 
+      2. Reducimos el ancho del nav de 20.27% (300px) a 23.44% del viewport de tablet.
+         Cálculo: (240px / 1024px) * 100 = 23.44%
+         Nota: En tablet el nav ocupa 240px de 1024px disponibles.
+    */
+    nav {
+        width: 23.44%;
+        /* (240px / 1024px) * 100 = 23.44% */
     }
 
-    .container-last-updates{
-        width: 100%;                           /* Ocupa el 100% de la zona de contenido de main (1080px / 1080px). */
-        height: 400px;                         /* Se mantiene en px para asegurar que se encuadra con la altura total. */
-        
-        /* 
-          Nota: En CSS, las propiedades de padding vertical expresadas en porcentaje se calculan 
-          respecto al ANCHO del elemento padre contenedor (main de 1080px).
-          - padding vertical: 4.63%. Original: 50px. Operación: (50px / 1080px) * 100 = 4.63%
-        */
-        padding: 4.63% 0%;     
-        display: flex;                 
-        justify-content: space-between;
+    /* 
+      3. Reducimos el padding horizontal del ul del sidebar.
+         - padding vertical: se mantiene como el original (50px / 700px) * 100 = 7.14% de la altura del nav.
+         - padding horizontal: (25px / 240px) * 100 = 10.42% del ancho del nav en tablet.
+         Usamos valores verticales en px para estabilidad del layout y horizontales en %.
+    */
+    nav ul {
+        padding: 7.14% 10.42%;
+        /* vertical: (50px / 700px) * 100 = 7.14% | horizontal: (25px / 240px) * 100 = 10.42% */
+    }
 
-        .card-info-pedidos{
-            /*
-              CÁLCULO DEL MODELO DE CAJA ESTÁNDAR (content-box):
-              - width: 55.56%; -> Original: 600px (ancho útil). Referencia: main de 1080px. Operación: (600px / 1080px) * 100 = 55.56%
-              - padding completo: 4.63%; -> Original: 50px en todos los lados. Referencia: main de 1080px. Operación: (50px / 1080px) * 100 = 4.63%
-              - Ancho total = 55.56% + 4.63% (izq) + 4.63% (der) = 64.82% de main (700px respecto a 1080px). Coincide con el boceto.
-            */
-            width: 55.56%;
-            height: 300px;                     /* Se mantiene en px por estabilidad del bloque de pedidos. */
-            padding: 4.63%;               
-            background-color: aliceblue;
-            border-radius: 20px;        
-            overflow-y: auto;           
-            text-align: justify;        
-        }
+    /* 
+      4. Ajustamos el main para compensar la reducción del nav:
+         - margin-left: 23.44% (igual al ancho del nav en tablet).
+         - width: calc(100% - 23.44% - 4.88%) = aprox. 71.68%
+           Desglose: 23.44% nav + 2.44% padding izq + 2.44% padding der = 28.32% restado.
+           Cálculo padding horizontal: (25px / 1024px) * 100 = 2.44%
+         - padding horizontal reducido: 2.44% (25px de 1024px).
+         - padding bottom: 2.44%.
+    */
+    main {
+        width: calc(100% - 23.44% - 4.88%);
+        /* 100% - 23.44% (nav) - 2.44% padding izq - 2.44% padding der */
+        margin-left: 23.44%;
+        /* (240px / 1024px) * 100 = 23.44% */
+        padding: 0% 2.44% 2.44% 2.44%;
+        /* (25px / 1024px) * 100 = 2.44% */
+        height: auto; /* Altura auto para adaptarse al contenido en tablet */
+    }
 
-        .card-productos-populares{
-            /*
-              CÁLCULO DEL MODELO DE CAJA ESTÁNDAR (content-box):
-              - width: 18.52%; -> Original: 200px (ancho útil). Referencia: main de 1080px. Operación: (200px / 1080px) * 100 = 18.52%
-              - padding completo: 4.63%; -> Original: 50px en todos los lados. Referencia: main de 1080px. Operación: (50px / 1080px) * 100 = 4.63%
-              - Ancho total = 18.52% + 4.63% (izq) + 4.63% (der) = 27.78% de main (300px respecto a 1080px). Coincide con el boceto.
-            */
-            width: 18.52%;
-            height: 300px;                     /* Se mantiene en px por estabilidad del bloque de productos. */
-            padding: 4.63%;               
-            display: flex;              
-            flex-direction: column;     
-            justify-content: space-between;
-            background-color: aliceblue;
-            border-radius: 20px;        
-            overflow-y: auto;           
+    /* 
+      5. Tarjetas de estadísticas adaptables:
+         - Ancho al 100% del main.
+         - flex-wrap: wrap y height: auto para 2 columnas si no caben en una fila.
+         - padding vertical: (15px / 1024px) * 100 = 1.46%
+    */
+    main .container-stadistics {
+        width: 100%;
+        height: auto;
+        flex-wrap: wrap;
+        padding: 1.46% 0%;
+        /* (15px / 1024px) * 100 = 1.46% */
+    }
 
-            .producto-item{
-                display: flex;          
-                justify-content: space-around;
+    /* 
+      6. Tarjetas individuales en 2 columnas:
+         - width: calc(50% - 5.21%) para 2 tarjetas por fila.
+           Desglose: 50% de espacio, menos 2.60% de margen por lado.
+           Cálculo margen: (25px / 960px aprox. ancho útil del main) * 100 = 2.60%
+         - margin-bottom: (15px / 700px altura nav) * 100 = 2.14% de altura del nav.
+           Como es altura, usamos valor relativo al contenedor vertical, pero en media queries 
+           es más seguro usar % del ancho. Aquí usamos 1.46% del viewport de 1024px.
+    */
+    main .container-stadistics .stadistic {
+        width: calc(50% - 5.21%);
+        /* 50% de 2 columnas menos padding lateral: (25px / 480px ancho col) * 100 = 5.21% */
+        margin-bottom: 1.46%;
+        /* (15px / 1024px) * 100 = 1.46% */
+    }
 
-                .producto-imagen-contenedor{
-                    flex: 0 0 25%;             /* Original: 50px de ancho de imagen. Referencia: ancho útil de tarjeta (200px). Operación: (50px / 200px) * 100 = 25% */
+    /* 
+      7. Fila inferior apilada verticalmente:
+         - Ancho al 100% del main.
+         - flex-direction: column para apilar las dos tarjetas.
+         - gap: (20px / 1024px) * 100 = 1.95%
+         - padding vertical: (30px / 1024px) * 100 = 2.93%
+    */
+    main .container-last-updates {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        gap: 1.95%;
+        /* (20px / 1024px) * 100 = 1.95% */
+        padding: 2.93% 0%;
+        /* (30px / 1024px) * 100 = 2.93% */
+    }
 
-                    img {
-                        width: 100%;    
-                        border-radius: 50px;
-                    }
-                }
+    /* 
+      8. Tarjeta de pedidos a ancho completo en tablet:
+         - width: calc(100% - 9.26%) para compensar el padding interno de la tarjeta.
+           Cálculo: el padding de 4.63% (50px de 1080px) se aplica a izq y der: 4.63% * 2 = 9.26%.
+         - height: auto.
+         - margin-bottom: (10px / 1024px) * 100 = 0.98%
+    */
+    main .container-last-updates .card-info-pedidos {
+        width: calc(100% - 9.26%);
+        /* 100% menos 4.63% padding izq + 4.63% padding der */
+        height: auto;
+        margin-bottom: 0.98%;
+        /* (10px / 1024px) * 100 = 0.98% */
+    }
 
-                .producto-texto{
-                    flex: 0 0 75%;             /* Original: 150px de ancho de texto. Referencia: ancho útil de tarjeta (200px). Operación: (150px / 200px) * 100 = 75% */
-                    text-align: justify;
-                }
-            }
-        }
+    /* 
+      9. Tarjeta de productos populares a ancho completo en tablet:
+         - width: calc(100% - 9.26%) igual que la tarjeta de pedidos.
+         - height: auto.
+    */
+    main .container-last-updates .card-productos-populares {
+        width: calc(100% - 9.26%);
+        /* 100% menos 4.63% padding izq + 4.63% padding der */
+        height: auto;
+    }
+
+    /* 
+      10. Footer fluido en tablet:
+          - width: calc(100% - 9.76%) para compensar el padding de 50px en viewport de 1024px.
+            Cálculo: (50px / 1024px) * 100 = 4.88% * 2 lados = 9.76%
+          - height: auto.
+          - padding horizontal: 4.88% | padding vertical: (25px / 1024px) * 100 = 2.44%
+          - flex-wrap: wrap para que los bloques puedan reorganizarse.
+          - gap: (20px / 1024px) * 100 = 1.95%
+    */
+    footer {
+        width: calc(100% - 9.76%);
+        /* 100% - (50px izq + 50px der) / 1024px * 100 = 9.76% */
+        height: auto;
+        padding: 2.44% 4.88%;
+        /* vertical: (25px / 1024px) * 100 = 2.44% | horizontal: (50px / 1024px) * 100 = 4.88% */
+        flex-wrap: wrap;
+        gap: 1.95%;
+        /* (20px / 1024px) * 100 = 1.95% */
+    }
+
+    /* 
+      11. Columnas del footer a un tercio cada una en tablet:
+          - flex-basis: calc(33.33% - 1.30%) para 3 columnas horizontales con gap.
+            Cálculo: 33.33% menos la mitad del gap (1.95% / 2 = 0.975% ≈ 0.98%) por cada lado.
+    */
+    footer .container-footer-title-logo,
+    footer .container-footer-info,
+    footer .container-footer-social-media {
+        flex-basis: calc(33.33% - 1.30%);
+        /* 33.33% de 3 columnas menos fracción del gap de 1.95% */
+    }
+
+    /* 
+      12. Redes sociales en tablet:
+          - width de cada icono: calc(33.33% - 0.98%) para 3 iconos dentro del bloque.
+    */
+    footer .container-footer-social-media .social-links .social-logo {
+        width: calc(33.33% - 0.98%);
+        /* 33.33% del bloque de redes sociales menos fracción del gap */
     }
 }
 
-footer {
-    clear: both;                       
-    color: aliceblue;                  
-
-    /*
-      CÁLCULO DEL MODELO DE CAJA ESTÁNDAR (content-box):
-      - width: 93.24%; -> Original: 1380px (ancho útil). Referencia: body de 1480px. Operación: (1380px / 1480px) * 100 = 93.24%
-      - padding horizontal: 3.38%; -> Original: 50px. Referencia: body de 1480px. Operación: (50px / 1480px) * 100 = 3.38%
-      - padding vertical superior: 1.69%; -> Original: 25px. Referencia: body de 1480px. Operación: (25px / 1480px) * 100 = 1.69%
-      - Ancho total = 93.24% + 3.38% + 3.38% = 100% de la página (1480px).
+/* MÓVIL */
+@media (max-width: 768px) {
+    /* 
+      1. El nav pasa a ser una barra superior a ancho completo:
+         - width: 100% del viewport.
+         - height: auto para adaptarse al contenido.
+         - float: none para romper el layout de sidebar y apilarlo.
     */
-    width: 93.24%;
-    height: 75px;                              /* Se mantiene en px para asegurar el alto total de 100px (75px + 25px padding). */
-    padding: 1.69% 3.38% 0% 3.38%;
-    background-color: rgb(67, 97, 70); 
-    display: flex;                     
-    justify-content: space-between;    
+    nav {
+        width: 100%;
+        height: auto;
+        float: none;
+    }
 
-    .container-footer-title-logo {
-        /*
-          EXPLICACIÓN DE PROPIEDADES FLEXBOX:
-          - flex-grow: 1; y flex-shrink: 1; -> Permiten expandirse y encogerse proporcionalmente.
-          - flex-basis: 33.33%; -> Original: 460px. Referencia: ancho de footer de 1380px. Operación: (460px / 1380px) * 100 = 33.33%
-        */
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: 33.33%;
+    /* 
+      2. El menú de enlaces pasa a ser horizontal y fluido:
+         - flex-direction: row y flex-wrap: wrap para alinear botones en horizontal.
+         - padding: (20px / 768px) * 100 = 2.60%
+         - gap: (10px / 768px) * 100 = 1.30%
+    */
+    nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 2.60%;
+        /* (20px / 768px) * 100 = 2.60% */
+        gap: 1.30%;
+        /* (10px / 768px) * 100 = 1.30% */
+    }
 
-        h3 {
-            font-size: 1rem;            
-        }
+    /* 
+      3. Botones del menú autoajustados al contenido:
+         - text-align: center.
+    */
+    nav ul .container-list {
+        text-align: center;
+        margin: 0%;
 
-        p {
-            font-size: 0.8rem;          
+        a {
+            padding: 1.04% 2.08%;
+            /* vertical: (8px / 768px) * 100 = 1.04% | horizontal: (16px / 768px) * 100 = 2.08% */
         }
     }
 
-    .container-footer-info {
-        /*
-          EXPLICACIÓN DE PROPIEDADES FLEXBOX:
-          - flex-basis: 33.33%; -> Original: 460px. Referencia: ancho de footer de 1380px. Operación: (460px / 1380px) * 100 = 33.33%
-        */
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: 33.33%;
+    /* 
+      4. El main se posiciona debajo del nav superior:
+         - margin-left: 0% (nav ya no es sidebar).
+         - width: calc(100% - 5.21%) para compensar el padding de 20px a cada lado.
+           Cálculo: (20px / 768px) * 100 = 2.60% * 2 lados = 5.21%
+         - padding: 2.60% en todos los lados.
+         - height: auto.
+    */
+    main {
+        width: calc(100% - 5.21%);
+        /* 100% - (20px izq + 20px der) / 768px * 100 = 5.21% */
+        margin-left: 0%;
+        padding: 2.60%;
+        /* (20px / 768px) * 100 = 2.60% */
+        height: auto;
+    }
 
-        h3 {
-            font-size: 1rem;
-        }
+    /* 
+      5. Cabecera del main apilada verticalmente y centrada:
+         - height: auto.
+         - flex-direction: column para apilar título y "Admin".
+         - gap: (8px / 768px) * 100 = 1.04%
+         - padding-bottom: (15px / 768px) * 100 = 1.95%
+    */
+    main .container-header {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.04%;
+        /* (8px / 768px) * 100 = 1.04% */
+        padding-bottom: 1.95%;
+        /* (15px / 768px) * 100 = 1.95% */
 
-        p {
-            font-size: 0.8rem;
+        h1 {
+            font-size: 1.4rem; /* Se mantiene en rem para respetar la escala tipográfica del sistema */
         }
     }
 
-    .container-footer-social-media {
-        /*
-          EXPLICACIÓN DE PROPIEDADES FLEXBOX:
-          - flex-basis: 33.33%; -> Original: 460px. Referencia: ancho de footer de 1380px. Operación: (460px / 1380px) * 100 = 33.33%
-        */
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: 33.33%;
+    /* 
+      6. Estadísticas apiladas en columna en móvil:
+         - flex-direction: column.
+         - gap: (15px / 768px) * 100 = 1.95%
+         - padding vertical: (15px / 768px) * 100 = 1.95%
+    */
+    main .container-stadistics {
+        height: auto;
+        flex-direction: column;
+        gap: 1.95%;
+        /* (15px / 768px) * 100 = 1.95% */
+        padding: 1.95% 0%;
+        /* (15px / 768px) * 100 = 1.95% */
+    }
 
-        .social-links {
-            display: flex;             
-            justify-content: space-evenly;
+    /* 
+      7. Cada tarjeta estadística al ancho completo del main:
+         - width: calc(100% - 4.63%) para compensar el padding horizontal de la tarjeta (2.31% * 2).
+           Cálculo: el padding original de la tarjeta es 2.31% a cada lado = 4.63% total.
+    */
+    main .container-stadistics .stadistic {
+        width: calc(100% - 4.63%);
+        /* 100% menos 2.31% padding izq + 2.31% padding der */
+        margin-bottom: 0%;
+    }
 
-            .social-logo {
-                /*
-                  CÁLCULO DEL ANCHO DE ICONO:
-                  - width: 33.33%; -> Original: 153.3px. Referencia: ancho útil de columna de 460px. Operación: (153.3px / 460px) * 100 = 33.33%
-                */
-                width: 33.33%;        
-                display: flex;         
-                justify-content: center;
+    /* 
+      8. Cajas inferiores apiladas verticalmente en móvil:
+         - flex-direction: column.
+         - padding vertical: (20px / 768px) * 100 = 2.60%
+         - gap: (20px / 768px) * 100 = 2.60%
+    */
+    main .container-last-updates {
+        flex-direction: column;
+        padding: 2.60% 0%;
+        /* (20px / 768px) * 100 = 2.60% */
+        gap: 2.60%;
+        /* (20px / 768px) * 100 = 2.60% */
 
-                img {
-                    width: 41.75%;             /* Original: 64px. Referencia: .social-logo de 153.3px. Operación: (64px / 153.3px) * 100 = 41.75% */
-                    border-radius: 50px;
+        .card-info-pedidos {
+            width: calc(100% - 5.21%);
+            /* 100% menos (20px izq + 20px der) / 768px * 100 = 5.21% */
+            padding: 2.60%;
+            /* (20px / 768px) * 100 = 2.60% */
+            height: auto;
+            text-align: left;
+        }
+
+        .card-productos-populares {
+            width: calc(100% - 5.21%);
+            /* 100% menos (20px izq + 20px der) / 768px * 100 = 5.21% */
+            padding: 2.60%;
+            /* (20px / 768px) * 100 = 2.60% */
+            height: auto;
+
+            .producto-item {
+                margin-bottom: 1.95%;
+                /* (15px / 768px) * 100 = 1.95% */
+
+                .producto-texto {
+                    flex: 1; /* El texto ocupa todo el espacio restante del contenedor */
                 }
             }
+        }
+    }
+
+    /* 
+      9. Footer apilado verticalmente y centrado en móvil:
+         - width: calc(100% - 5.21%) para compensar padding de 20px a cada lado.
+           Cálculo: (20px / 768px) * 100 = 2.60% * 2 = 5.21%
+         - height: auto.
+         - padding: (30px / 768px) * 100 = 3.91% vertical | 2.60% horizontal.
+         - gap: (20px / 768px) * 100 = 2.60%
+    */
+    footer {
+        width: calc(100% - 5.21%);
+        /* 100% - (20px izq + 20px der) / 768px * 100 = 5.21% */
+        height: auto;
+        padding: 3.91% 2.60%;
+        /* vertical: (30px / 768px) * 100 = 3.91% | horizontal: (20px / 768px) * 100 = 2.60% */
+        flex-direction: column;
+        gap: 2.60%;
+        /* (20px / 768px) * 100 = 2.60% */
+        text-align: center;
+    }
+
+    /* 
+      10. Columnas del footer al 100% en móvil (apiladas):
+          - flex-basis: 100%.
+          - padding-right: 0%.
+    */
+    footer .container-footer-title-logo,
+    footer .container-footer-info,
+    footer .container-footer-social-media {
+        flex-basis: 100%;
+        padding-right: 0%;
+    }
+
+    /* 
+      11. Redes sociales centradas en móvil:
+          - justify-content: center.
+          - gap: (15px / 768px) * 100 = 1.95%
+          - Cada icono a 10.42% del ancho del footer.
+            Cálculo: (80px / 768px) * 100 = 10.42%
+    */
+    footer .container-footer-social-media .social-links {
+        justify-content: center;
+        gap: 1.95%;
+        /* (15px / 768px) * 100 = 1.95% */
+
+        .social-logo {
+            width: 10.42%;
+            /* (80px / 768px) * 100 = 10.42% */
         }
     }
 }
