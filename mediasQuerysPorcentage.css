@@ -1,0 +1,368 @@
+/* TABLET */
+@media screen and (max-width: 1024px) {
+    /* 
+      1. Ajustamos el ancho del body a 100% para adaptarse al viewport 
+         y evitar desbordamientos laterales.
+         El gradiente de fondo se ajusta: el nav ocupa el 23.44% del ancho en tablet.
+         Cálculo: (240px / 1024px) * 100 = 23.44%
+    */
+    body {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        background: linear-gradient(to right, rgb(2, 50, 14) 23.44%, antiquewhite 23.44%);
+    }
+
+    /* 
+      2. Reducimos el ancho del nav de 20.27% (300px) a 23.44% del viewport de tablet.
+         Cálculo: (240px / 1024px) * 100 = 23.44%
+         Nota: En tablet el nav ocupa 240px de 1024px disponibles.
+    */
+    nav {
+        width: 23.44%;
+        /* (240px / 1024px) * 100 = 23.44% */
+    }
+
+    /* 
+      3. Reducimos el padding horizontal del ul del sidebar.
+         - padding vertical: se mantiene como el original (50px / 700px) * 100 = 7.14% de la altura del nav.
+         - padding horizontal: (25px / 240px) * 100 = 10.42% del ancho del nav en tablet.
+         Usamos valores verticales en px para estabilidad del layout y horizontales en %.
+    */
+    nav ul {
+        padding: 7.14% 10.42%;
+        /* vertical: (50px / 700px) * 100 = 7.14% | horizontal: (25px / 240px) * 100 = 10.42% */
+    }
+
+    /* 
+      4. Ajustamos el main para compensar la reducción del nav:
+         - margin-left: 23.44% (igual al ancho del nav en tablet).
+         - width: calc(100% - 23.44% - 4.88%) = aprox. 71.68%
+           Desglose: 23.44% nav + 2.44% padding izq + 2.44% padding der = 28.32% restado.
+           Cálculo padding horizontal: (25px / 1024px) * 100 = 2.44%
+         - padding horizontal reducido: 2.44% (25px de 1024px).
+         - padding bottom: 2.44%.
+    */
+    main {
+        width: calc(100% - 23.44% - 4.88%);
+        /* 100% - 23.44% (nav) - 2.44% padding izq - 2.44% padding der */
+        margin-left: 23.44%;
+        /* (240px / 1024px) * 100 = 23.44% */
+        padding: 0% 2.44% 2.44% 2.44%;
+        /* (25px / 1024px) * 100 = 2.44% */
+        height: auto; /* Altura auto para adaptarse al contenido en tablet */
+    }
+
+    /* 
+      5. Tarjetas de estadísticas adaptables:
+         - Ancho al 100% del main.
+         - flex-wrap: wrap y height: auto para 2 columnas si no caben en una fila.
+         - padding vertical: (15px / 1024px) * 100 = 1.46%
+    */
+    main .container-stadistics {
+        width: 100%;
+        height: auto;
+        flex-wrap: wrap;
+        padding: 1.46% 0%;
+        /* (15px / 1024px) * 100 = 1.46% */
+    }
+
+    /* 
+      6. Tarjetas individuales en 2 columnas:
+         - width: calc(50% - 5.21%) para 2 tarjetas por fila.
+           Desglose: 50% de espacio, menos 2.60% de margen por lado.
+           Cálculo margen: (25px / 960px aprox. ancho útil del main) * 100 = 2.60%
+         - margin-bottom: (15px / 700px altura nav) * 100 = 2.14% de altura del nav.
+           Como es altura, usamos valor relativo al contenedor vertical, pero en media queries 
+           es más seguro usar % del ancho. Aquí usamos 1.46% del viewport de 1024px.
+    */
+    main .container-stadistics .stadistic {
+        width: calc(50% - 5.21%);
+        /* 50% de 2 columnas menos padding lateral: (25px / 480px ancho col) * 100 = 5.21% */
+        margin-bottom: 1.46%;
+        /* (15px / 1024px) * 100 = 1.46% */
+    }
+
+    /* 
+      7. Fila inferior apilada verticalmente:
+         - Ancho al 100% del main.
+         - flex-direction: column para apilar las dos tarjetas.
+         - gap: (20px / 1024px) * 100 = 1.95%
+         - padding vertical: (30px / 1024px) * 100 = 2.93%
+    */
+    main .container-last-updates {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        gap: 1.95%;
+        /* (20px / 1024px) * 100 = 1.95% */
+        padding: 2.93% 0%;
+        /* (30px / 1024px) * 100 = 2.93% */
+    }
+
+    /* 
+      8. Tarjeta de pedidos a ancho completo en tablet:
+         - width: calc(100% - 9.26%) para compensar el padding interno de la tarjeta.
+           Cálculo: el padding de 4.63% (50px de 1080px) se aplica a izq y der: 4.63% * 2 = 9.26%.
+         - height: auto.
+         - margin-bottom: (10px / 1024px) * 100 = 0.98%
+    */
+    main .container-last-updates .card-info-pedidos {
+        width: calc(100% - 9.26%);
+        /* 100% menos 4.63% padding izq + 4.63% padding der */
+        height: auto;
+        margin-bottom: 0.98%;
+        /* (10px / 1024px) * 100 = 0.98% */
+    }
+
+    /* 
+      9. Tarjeta de productos populares a ancho completo en tablet:
+         - width: calc(100% - 9.26%) igual que la tarjeta de pedidos.
+         - height: auto.
+    */
+    main .container-last-updates .card-productos-populares {
+        width: calc(100% - 9.26%);
+        /* 100% menos 4.63% padding izq + 4.63% padding der */
+        height: auto;
+    }
+
+    /* 
+      10. Footer fluido en tablet:
+          - width: calc(100% - 9.76%) para compensar el padding de 50px en viewport de 1024px.
+            Cálculo: (50px / 1024px) * 100 = 4.88% * 2 lados = 9.76%
+          - height: auto.
+          - padding horizontal: 4.88% | padding vertical: (25px / 1024px) * 100 = 2.44%
+          - flex-wrap: wrap para que los bloques puedan reorganizarse.
+          - gap: (20px / 1024px) * 100 = 1.95%
+    */
+    footer {
+        width: calc(100% - 9.76%);
+        /* 100% - (50px izq + 50px der) / 1024px * 100 = 9.76% */
+        height: auto;
+        padding: 2.44% 4.88%;
+        /* vertical: (25px / 1024px) * 100 = 2.44% | horizontal: (50px / 1024px) * 100 = 4.88% */
+        flex-wrap: wrap;
+        gap: 1.95%;
+        /* (20px / 1024px) * 100 = 1.95% */
+    }
+
+    /* 
+      11. Columnas del footer a un tercio cada una en tablet:
+          - flex-basis: calc(33.33% - 1.30%) para 3 columnas horizontales con gap.
+            Cálculo: 33.33% menos la mitad del gap (1.95% / 2 = 0.975% ≈ 0.98%) por cada lado.
+    */
+    footer .container-footer-title-logo,
+    footer .container-footer-info,
+    footer .container-footer-social-media {
+        flex-basis: calc(33.33% - 1.30%);
+        /* 33.33% de 3 columnas menos fracción del gap de 1.95% */
+    }
+
+    /* 
+      12. Redes sociales en tablet:
+          - width de cada icono: calc(33.33% - 0.98%) para 3 iconos dentro del bloque.
+    */
+    footer .container-footer-social-media .social-links .social-logo {
+        width: calc(33.33% - 0.98%);
+        /* 33.33% del bloque de redes sociales menos fracción del gap */
+    }
+}
+
+/* MÓVIL */
+@media screen and (max-width: 768px) {
+    /* 
+      1. El nav pasa a ser una barra superior a ancho completo:
+         - width: 100% del viewport.
+         - height: auto para adaptarse al contenido.
+         - float: none para romper el layout de sidebar y apilarlo.
+    */
+    nav {
+        width: 100%;
+        height: auto;
+        float: none;
+    }
+
+    /* 
+      2. El menú de enlaces pasa a ser horizontal y fluido:
+         - flex-direction: row y flex-wrap: wrap para alinear botones en horizontal.
+         - padding: (20px / 768px) * 100 = 2.60%
+         - gap: (10px / 768px) * 100 = 1.30%
+    */
+    nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 2.60%;
+        /* (20px / 768px) * 100 = 2.60% */
+        gap: 1.30%;
+        /* (10px / 768px) * 100 = 1.30% */
+    }
+
+    /* 
+      3. Botones del menú autoajustados al contenido:
+         - text-align: center.
+    */
+    nav ul .container-list {
+        text-align: center;
+        margin: 0%;
+
+        a {
+            padding: 1.04% 2.08%;
+            /* vertical: (8px / 768px) * 100 = 1.04% | horizontal: (16px / 768px) * 100 = 2.08% */
+        }
+    }
+
+    /* 
+      4. El main se posiciona debajo del nav superior:
+         - margin-left: 0% (nav ya no es sidebar).
+         - width: calc(100% - 5.21%) para compensar el padding de 20px a cada lado.
+           Cálculo: (20px / 768px) * 100 = 2.60% * 2 lados = 5.21%
+         - padding: 2.60% en todos los lados.
+         - height: auto.
+    */
+    main {
+        width: calc(100% - 5.21%);
+        /* 100% - (20px izq + 20px der) / 768px * 100 = 5.21% */
+        margin-left: 0%;
+        padding: 2.60%;
+        /* (20px / 768px) * 100 = 2.60% */
+        height: auto;
+    }
+
+    /* 
+      5. Cabecera del main apilada verticalmente y centrada:
+         - height: auto.
+         - flex-direction: column para apilar título y "Admin".
+         - gap: (8px / 768px) * 100 = 1.04%
+         - padding-bottom: (15px / 768px) * 100 = 1.95%
+    */
+    main .container-header {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.04%;
+        /* (8px / 768px) * 100 = 1.04% */
+        padding-bottom: 1.95%;
+        /* (15px / 768px) * 100 = 1.95% */
+
+        h1 {
+            font-size: 1.4rem; /* Se mantiene en rem para respetar la escala tipográfica del sistema */
+        }
+    }
+
+    /* 
+      6. Estadísticas apiladas en columna en móvil:
+         - flex-direction: column.
+         - gap: (15px / 768px) * 100 = 1.95%
+         - padding vertical: (15px / 768px) * 100 = 1.95%
+    */
+    main .container-stadistics {
+        height: auto;
+        flex-direction: column;
+        gap: 1.95%;
+        /* (15px / 768px) * 100 = 1.95% */
+        padding: 1.95% 0%;
+        /* (15px / 768px) * 100 = 1.95% */
+    }
+
+    /* 
+      7. Cada tarjeta estadística al ancho completo del main:
+         - width: calc(100% - 4.63%) para compensar el padding horizontal de la tarjeta (2.31% * 2).
+           Cálculo: el padding original de la tarjeta es 2.31% a cada lado = 4.63% total.
+    */
+    main .container-stadistics .stadistic {
+        width: calc(100% - 4.63%);
+        /* 100% menos 2.31% padding izq + 2.31% padding der */
+        margin-bottom: 0%;
+    }
+
+    /* 
+      8. Cajas inferiores apiladas verticalmente en móvil:
+         - flex-direction: column.
+         - padding vertical: (20px / 768px) * 100 = 2.60%
+         - gap: (20px / 768px) * 100 = 2.60%
+    */
+    main .container-last-updates {
+        flex-direction: column;
+        padding: 2.60% 0%;
+        /* (20px / 768px) * 100 = 2.60% */
+        gap: 2.60%;
+        /* (20px / 768px) * 100 = 2.60% */
+
+        .card-info-pedidos {
+            width: calc(100% - 5.21%);
+            /* 100% menos (20px izq + 20px der) / 768px * 100 = 5.21% */
+            padding: 2.60%;
+            /* (20px / 768px) * 100 = 2.60% */
+            height: auto;
+            text-align: left;
+        }
+
+        .card-productos-populares {
+            width: calc(100% - 5.21%);
+            /* 100% menos (20px izq + 20px der) / 768px * 100 = 5.21% */
+            padding: 2.60%;
+            /* (20px / 768px) * 100 = 2.60% */
+            height: auto;
+
+            .producto-item {
+                margin-bottom: 1.95%;
+                /* (15px / 768px) * 100 = 1.95% */
+
+                .producto-texto {
+                    flex: 1; /* El texto ocupa todo el espacio restante del contenedor */
+                }
+            }
+        }
+    }
+
+    /* 
+      9. Footer apilado verticalmente y centrado en móvil:
+         - width: calc(100% - 5.21%) para compensar padding de 20px a cada lado.
+           Cálculo: (20px / 768px) * 100 = 2.60% * 2 = 5.21%
+         - height: auto.
+         - padding: (30px / 768px) * 100 = 3.91% vertical | 2.60% horizontal.
+         - gap: (20px / 768px) * 100 = 2.60%
+    */
+    footer {
+        width: calc(100% - 5.21%);
+        /* 100% - (20px izq + 20px der) / 768px * 100 = 5.21% */
+        height: auto;
+        padding: 3.91% 2.60%;
+        /* vertical: (30px / 768px) * 100 = 3.91% | horizontal: (20px / 768px) * 100 = 2.60% */
+        flex-direction: column;
+        gap: 2.60%;
+        /* (20px / 768px) * 100 = 2.60% */
+        text-align: center;
+    }
+
+    /* 
+      10. Columnas del footer al 100% en móvil (apiladas):
+          - flex-basis: 100%.
+          - padding-right: 0%.
+    */
+    footer .container-footer-title-logo,
+    footer .container-footer-info,
+    footer .container-footer-social-media {
+        flex-basis: 100%;
+        padding-right: 0%;
+    }
+
+    /* 
+      11. Redes sociales centradas en móvil:
+          - justify-content: center.
+          - gap: (15px / 768px) * 100 = 1.95%
+          - Cada icono a 10.42% del ancho del footer.
+            Cálculo: (80px / 768px) * 100 = 10.42%
+    */
+    footer .container-footer-social-media .social-links {
+        justify-content: center;
+        gap: 1.95%;
+        /* (15px / 768px) * 100 = 1.95% */
+
+        .social-logo {
+            width: 10.42%;
+            /* (80px / 768px) * 100 = 10.42% */
+        }
+    }
+}
